@@ -1,0 +1,6 @@
+Webhines\SymbinBundle\Entity\Document:
+    properties:
+        title:
+            - NotBlank: ~
+        body:
+            - NotBlank: ~

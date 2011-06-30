@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Symbin{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/webhinessymbin/css/base.css') }}" type="text/css" media="all" />
+        {% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="symbin-wrapper">
+            <div id="symbin-header">
+                <a href="{{ path('home') }}">
+                    <img src="{{ asset('bundles/webhinessymbin/images/logo.gif') }}" alt="Symbin">
+                </a>
+                <form id="symbin-search" method="GET" action="{{ path('search') }}">
+                    <label for="symbin-search-field"><span>Search on Symbin Website</span></label>
+                    <input name="q" id="symbin-search-field" type="search" placeholder="Search Symbin" class="medium_txt">
+                    <input type="submit" class="symbin-button-grey" value="OK" />
+                </form>
+            </div>
+        
+            {% if app.session.flash('notice') %}
+                <div class="flash-message">
+                    <em>Notice</em>: {{ app.session.flash('notice') }}
+                </div>
+            {% endif %}
+
+            {% block content_header %}
+                <ul id="menu">
+                    {% block content_header_more %}
+                    {% endblock %}
+                </ul>
+
+                <div style="clear: both"></div>
+            {% endblock %}
+
+            <div class="symbin-content">
+                {% block content %}
+                {% endblock %}
+            </div>
+
+        </div>
+    </body>
+</html>

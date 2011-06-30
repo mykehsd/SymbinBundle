@@ -1,0 +1,16 @@
+{% extends 'WebhinesSymbinBundle::base.html.twig' %}
+{% block title %} Create a new snippit {% endblock %}
+
+{% block content %}
+<h1>Create snippit</h1>
+
+<form action="{{ path('_create') }}" method="post" {{ form_enctype(form) }}>
+    <div id="document_form">
+        {{ form_widget(form) }}
+    </div>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+{% endblock %}

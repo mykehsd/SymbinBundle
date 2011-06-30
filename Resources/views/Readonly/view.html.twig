@@ -1,0 +1,48 @@
+{% extends 'WebhinesSymbinBundle::base.html.twig' %}
+
+{% block title %} {{ document.title }} {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shCore.js') }}"></script>
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shBrushPlain.js') }}"></script>
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shBrushJScript.js') }}"></script>
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shBrushXml.js') }}"></script>
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shBrushSql.js') }}"></script>
+    <script src="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/scripts/shBrushPhp.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/styles/shCore.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/styles/shThemeDefault.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/webhinessymbin/js/syntaxhighlighter/styles/shThemeDjango.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ document.title }}</h1>
+Formatted
+<pre class="brush: js">
+{{ document.body }}
+</pre>
+
+Raw
+<pre class="syntaxhighlighter line alt2"><span class="plain">
+{{ document.body|raw }}
+</span></pre>
+
+<br/>
+Created: {{ document.createdAt|date('m/d/Y g:ia') }}
+{% if document.createdAt != document.updatedAt %}
+    <Br/>
+    Updated: {{ document.updatedAt|date('m/d/Y g:ia') }}
+{% endif %}
+
+<script type="text/javascript">
+     SyntaxHighlighter.all()
+</script>
+
+<br/><br/>
+<a href="{{ path('_new') }}">Create new snippit</a>
+{% endblock %}

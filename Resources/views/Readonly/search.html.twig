@@ -1,0 +1,11 @@
+{% extends 'WebhinesSymbinBundle::base.html.twig' %}
+{% block title %}Manage snippit{% endblock %}
+
+{% block content %}
+        
+{% for document in documents %}
+    <a href="{{ path('view', {'slug': document.slug}) }}">{{ document.title }}</a> <br/>
+{% else %}
+    No results found
+{% endfor %}
+{% endblock %}
